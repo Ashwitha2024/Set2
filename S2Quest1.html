@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse Array</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      input,
+      button {
+        margin-top: 10px;
+        padding: 10px;
+        width: 50%;
+      }
+      button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      #result {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Reverse Array In-Place</h3>
+    <input
+      type="text"
+      id="arrayInput"
+      placeholder="Enter numbers separated by commas"
+    />
+    <button onclick="reverseArray()">Reverse Array</button>
+    <p id="result"></p>
+
+    <script>
+      function reverseArray() {
+        const input = document.getElementById("arrayInput").value;
+        const arr = input.split(",").map(Number); // Convert input to an array of numbers
+
+        if (arr.includes(NaN)) {
+          // Check for invalid inputs
+          document.getElementById("result").textContent =
+            "Please enter valid numbers.";
+          return;
+        }
+
+        // Reverse the array using a simple loop (in-place)
+        for (let i = 0, j = arr.length - 1; i < j; i++, j--) {
+          [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements at i and j
+        }
+
+        document.getElementById(
+          "result"
+        ).textContent = `Reversed array: ${arr.join(", ")}`;
+      }
+    </script>
+  </body>
+</html>

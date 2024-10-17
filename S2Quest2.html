@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remove Duplicates from Sorted Array</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      input,
+      button {
+        margin-top: 10px;
+        padding: 10px;
+        width: 50%;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      #result {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Remove Duplicates from Sorted Array</h3>
+    <input
+      type="text"
+      id="arrayInput"
+      placeholder="Enter sorted numbers separated by commas"
+    />
+    <button onclick="removeDuplicates()">Remove Duplicates</button>
+    <p id="result"></p>
+
+    <script>
+      function removeDuplicates() {
+        const input = document.getElementById("arrayInput").value;
+        const arr = input.split(",").map(Number); // Convert input to an array of numbers
+
+        // Check for invalid input
+        if (arr.includes(NaN)) {
+          document.getElementById("result").textContent =
+            "Please enter valid numbers.";
+          return;
+        }
+
+        // Remove duplicates in-place for sorted array
+        let uniqueIndex = 0;
+
+        for (let i = 1; i < arr.length; i++) {
+          if (arr[i] !== arr[uniqueIndex]) {
+            uniqueIndex++;
+            arr[uniqueIndex] = arr[i]; // Move the unique element
+          }
+        }
+
+        const newArr = arr.slice(0, uniqueIndex + 1); // Slice the array to keep only unique elements
+        document.getElementById("result").textContent = `New length: ${
+          newArr.length
+        }, Array: ${newArr.join(", ")}`;
+      }
+    </script>
+  </body>
+</html>
